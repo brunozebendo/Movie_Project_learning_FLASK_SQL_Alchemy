@@ -1,0 +1,25 @@
+<!--essa é a página para adicionar um novo filme, primeiro ela extende e importa os módulos do bootstrap
+para o código básico de html e para formulário wtf-->
+
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf%}
+<!--aqui, são importados as fontes do google e o estilo css-->
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Add Movie{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h1 class="heading">Add a Movie</h1>
+<!--a linha abaixo cria um formulário simples, já usando o wtforms com todas as suas funcionalidades
+de segurança e o bootstrap para o formato. O atributo form está vinculado a rota /add no main.py, o
+novalidate significa que ele não vai usar a validação do browser, mas a validação do form. Reparar
+como wtf é bootstrap/wtf.html, conforma resumido no começo do código.-->
+    {{ wtf.quick_form(form, novalidate=True) }}
+</div>
+{% endblock %}
